@@ -13,32 +13,26 @@ st.set_page_config(
 
 st.title("Графички приказ")
 
-uploaded_file = st.file_uploader(
-    "Учитај Excel фајл",
-    type=["xlsx"]
+
+raw_df = pd.read_excel("Rezultati.xlsx")
+
+raw_df.columns = raw_df.columns.str.strip()
+raw_df['Group'] = raw_df['Group'].str.strip()
+
+params = ['FA', 'MD', 'AD', 'RD']
+
+prikaz = st.selectbox(
+    "Избор приказа",
+    [
+        "scatter",
+        "boxplot",
+        "bar",
+        "error bar plot",
+        "doughnut",
+        "radar chart",
+        "histogram"
+    ]
 )
-
-if uploaded_file is not None:
-
-    raw_df = pd.read_excel("Rezultati.xlsx")
-
-    raw_df.columns = raw_df.columns.str.strip()
-    raw_df['Group'] = raw_df['Group'].str.strip()
-
-    params = ['FA', 'MD', 'AD', 'RD']
-
-    prikaz = st.selectbox(
-        "Избор приказа",
-        [
-            "scatter",
-            "boxplot",
-            "bar",
-            "error bar plot",
-            "doughnut",
-            "radar chart",
-            "histogram"
-        ]
-    )
 
     # =====================================================
     # SCATTER
