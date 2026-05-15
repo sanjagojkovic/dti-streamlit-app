@@ -20,7 +20,7 @@ uploaded_file = st.file_uploader(
 
 if uploaded_file is not None:
 
-    raw_df = pd.read_excel(uploaded_file)
+    raw_df = pd.read_excel("Rezultati.xlsx")
 
     raw_df.columns = raw_df.columns.str.strip()
     raw_df['Group'] = raw_df['Group'].str.strip()
